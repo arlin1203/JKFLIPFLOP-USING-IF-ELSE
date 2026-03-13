@@ -35,14 +35,62 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 **Procedure**
 
 /* write all the steps invloved */
+1. Define Inputs/Outputs: Inputs: J (Set), K (Reset), c1k (clock); Outputs: q, qbar (~q).
+
+2. Initialization: Set q = 0 and qbar = 1 at the start of the simulation.
+
+3. JK Flip-Flop Logic: On posedge c1k, compute q
+
+4. Complementary Output: Update qbar = ~q to maintain complementarity.
+
+5. Testbench: Simulate with combinations of J, K, and c1k to verify JK Flip-Flop functionality.
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:212225040027
 */
+module de3(q, qb,j,k,clock,reset);
+    input j,k,clock,reset;
+    output reg q, qb;
+	 
+always @ (posedge (clock))
+
+    begin 
+        if (!reset)
+            begin
+               q <= q;
+               qb <=qb;
+            end   
+        
+else
+ //Write logic for JK flipflop using if else statement for four conditions
+
+begin
+               if (j == 0 && k == 0)
+                    begin
+                    q <= q;
+                    qb <= qb;
+                    end 
+		else if (j != k)
+                    begin
+                    q <= j;
+                    qb <= k;
+                    end
+               else if (j == 1 && k == 1) 
+                    begin 
+                    q <= ~q; 
+                    qb <= ~qb; 
+                    end 
+            end
+end  
+endmodule
 
 **RTL LOGIC FOR FLIPFLOPS**
+<img width="1523" height="800" alt="image" src="https://github.com/user-attachments/assets/83b5f833-79e6-4f31-8e2b-7107e0e52ba9" />
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+<img width="1657" height="802" alt="image" src="https://github.com/user-attachments/assets/ca01028d-ed41-410e-8b3c-5bda4e1156d9" />
 
 **RESULTS**
+Thus,The JK FlipFlop is implemented and verified sucessfully.
